@@ -16,6 +16,7 @@ Class Finger
 	setDutyCycle
 	setWaveform
 	setDirections
+	getPosition
 
 Class TemperatureSensor
     has Temperature (type float or long... should look up what is better)
@@ -24,5 +25,11 @@ Class TemperatureSensor
     Methods:
 	activateFan
 	checkAnotherSensor
+	verifyStatus (?)
 	
-		
+Class Fan
+    has Status
+    
+    Methods:
+	turnOn
+
