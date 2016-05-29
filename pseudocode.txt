@@ -1,0 +1,28 @@
+Written in C
+
+Make sure to...
+    Have an error or status logger
+    
+
+
+Class Finger    
+    has ActivatedDirection (type array)
+    has Waveform (type String)
+    has DutyCycle (type int)
+    has ActivationStatus (type boolean) (not sure if this one is actually super necessary)
+ 
+    Methods:
+	getActivationStatus (depends if we use it above or not)
+	setDutyCycle
+	setWaveform
+	setDirections
+
+Class TemperatureSensor
+    has Temperature (type float or long... should look up what is better)
+    has ID
+    
+    Methods:
+	activateFan
+	checkAnotherSensor
+	
+		
