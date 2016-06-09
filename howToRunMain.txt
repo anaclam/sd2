@@ -1,0 +1,16 @@
+in unix terminal
+
+type 
+"gcc -o main main.c"
+to create executable
+
+and then "./main"
+to run it
+
+
+if you look in main, it shows you how to create an instance of default finger 
+and how to change parameters
+
+i wrote a print also so you can see it
+
+-a

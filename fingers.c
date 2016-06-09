@@ -3,53 +3,132 @@
 *
 */
 
-#include <fingers.h>
+//#include <fingers.h> /// planning to just not use header files
 #include <stdio.h>
+//#include <stdbool.h>
+//#include <string.h>
+//----------//
+// typedefs //
+//----------//
+typedef struct finger_s finger;
+typedef enum {SINE=0, SQUARE=1, TRIANGLE=2, PULSE=3} waveform_e;
 
-
-
-struct finger()
+//-----------------//
+// struct finger_s //
+//-----------------//
+struct finger_s
 {
-    // Array ActivatedDirections [Up, Down, Left, Right]
-    // Will have a value of true or false for each one. Always size 4.
-    // Default values is false for all, aka nothing is activated.
-    boolean ActivatedDirections [4] = [false, false, false, false];
-    //char waveform[]; // DECLARE AN ENUM FOR THIS LATER
-    int waveform; // make enum for this*********
-    int dutyCycle = 0 // Default dutyCycle 0 aka nothing
-    boolean ActivationStatus = false; // default should be deactivated
+    int id;                         // 1: TMB, 2: IND, 3: MID, 4: RNG, 5: PKY
+    int ActivatedDirections[4];
+    int waveform;                   // 0: SINE, 1: SQUARE, 2: TRIANGLE, 3: PULSE
+    int dutyCycle;                  // 1-100: As percent
+    //bool ActivationStatus;
+} finger_default = {0, {0,0,0,0}, SINE, 0}; //, false};
+
+//-----------------------//
+// function declarations //
+//-----------------------//
+void printFingerInfo(finger finger_);
+char * whichFinger(finger finger_);
+char * whichWaveform(finger finger_);
+void printActivated(finger finger_);
+char * whichDirection(int i);
+bool isActive(finger finger_);
+
+//---------------------//
+// funtion definitions //
+//---------------------//
+void printFingerInfo(finger finger_)
+{
+    printf("\n");
+    printf("--------- FINGER DETAILS: %s ---------\n", whichFinger(finger_));
+    printf("Waveform: %s \n", whichWaveform(finger_));
+    //printf("Activated Directions (U D L R): %d %d %d %d \n", finger_.ActivatedDirections[0], finger_.ActivatedDirections[1], finger_.ActivatedDirections[2], finger_.ActivatedDirections[3]);
+    
+    printf("Activated Directions: ");
+    printActivated(finger_);
+
+    //printf("whichActivated\n"); whichActivated(finger_);
+    printf("Duty Cycle: %d \n", finger_.dutyCycle);
+    printf("Activation Status: %d \n", isActive(finger_));
+    printf("\n");
 }
 
-boolean getActivationStatus(struct finger finger_)
+char * whichFinger(finger finger_)
 {
-    return finger_.ActivationStatus;
-}
-
-void setDutyCycle(struct finger finger_, int dutyCycle_)
-{
-    finger.dutyCycle = dutyCycle_;
-}
-
-void setWaveform(struct finger finger_, int waveformEnum_)
-{
-    finger.waveform = waveformEnum_;
-}
-
-void setDirections(struct finger finger_, boolean directions_ [4])
-{
-    finger_.ActivatedDirections = directions_;
-    if (finger_.ActivatedDirections != [false, false, false, false])
+    switch (finger_.id)
     {
-        finger_.ActivationStatus = true;
-    }
-    else
-    {
-        finger_.ActivationStatus = false;
+        case 1:
+            return "TMB";
+        case 2:
+            return "IND";
+        case 3:
+            return "MID";
+        case 4:
+            return "RNG";
+        case 5:
+            return "PKY";
+        default:
+            return "---";
     }
 }
 
-void getPosition(struct finger finger_)
+char * whichWaveform(finger finger_)
 {
-    // not sure how to implement yet... will probably need some kind of
-    // feedback from waveform or something....
+    switch (finger_.waveform)
+    {
+        case 0:
+            return "SINE";
+        case 1:
+            return "SQUARE";
+        case 2:
+            return "TRIANGLE";
+        case 3:
+            return "PULSE";
+        default:
+            return "-----";
+    }
+}
+
+void printActivated(finger finger_)
+{
+    for (int i=0; i<4; i++)
+    {
+        if (finger_.ActivatedDirections[i])
+        {
+            printf(whichDirection(i));
+            printf(" ");
+        }
+        else printf("- ");
+    }
+    printf("\n");
+}
+
+char * whichDirection(int i)
+{
+    switch (i)
+    {
+        case 0:
+            return "U";
+        case 1:
+            return "D";
+        case 2:
+            return "L";
+        case 3:
+            return "R";
+        default:
+            return "-";
+    }
+}
+
+bool isActive(finger finger_)
+{
+    for (int i=0; i<4; i++)
+    {
+        if (finger_.ActivatedDirections[i])
+        {
+            return true;
+        }
+        return false;
+    }
 }
