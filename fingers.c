@@ -6,6 +6,8 @@
 //#include <fingers.h> /// planning to just not use header files
 #include <stdio.h>
 //#include <stdbool.h>
+
+
 //#include <string.h>
 //----------//
 // typedefs //
@@ -22,8 +24,8 @@ struct finger_s
     int ActivatedDirections[4];
     int waveform;                   // 0: SINE, 1: SQUARE, 2: TRIANGLE, 3: PULSE
     int dutyCycle;                  // 1-100: As percent
-    //bool ActivationStatus;
-} finger_default = {0, {0,0,0,0}, SINE, 0}; //, false};
+    float voltageInput;
+} finger_default = {0, {0,0,0,0}, SINE, 0, 0.0}; //, false};
 
 //-----------------------//
 // function declarations //
@@ -34,6 +36,14 @@ char * whichWaveform(finger finger_);
 void printActivated(finger finger_);
 char * whichDirection(int i);
 bool isActive(finger finger_);
+float getVoltage(finger finger_);
+
+void updateID(finger *finger_, int id_);
+//void updateActivatedDirections(finger *finger_, int activatedDirections_[4]);
+void updateWaveform(finger *finger_, int waveform_);
+void updateDutyCycle(finger *finger_, int dutyCycle_);
+void updateVoltage(finger *finger_, float voltage_);
+
 
 //---------------------//
 // funtion definitions //
@@ -51,6 +61,7 @@ void printFingerInfo(finger finger_)
     //printf("whichActivated\n"); whichActivated(finger_);
     printf("Duty Cycle: %d \n", finger_.dutyCycle);
     printf("Activation Status: %d \n", isActive(finger_));
+    printf("Input Voltage: %2.1f V", getVoltage(finger_));
     printf("\n");
 }
 
@@ -131,4 +142,38 @@ bool isActive(finger finger_)
         }
         return false;
     }
+}
+
+float getVoltage(finger finger_)
+{
+    return finger_.voltageInput;
+}
+
+void updateID(finger *finger_, int id_)
+{
+    finger_->id = id_;
+}
+
+/*
+void updateActivatedDirections(finger *finger_, int *activatedDirections_)
+{
+    for (int i=0; i<4; i++)
+    {
+        finger_->ActivatedDirections = activatedDirections_;
+    }
+}*/
+
+void updateWaveform(finger *finger_, int waveform_)
+{
+    finger_->waveform = waveform_;
+}
+
+void updateDutyCycle(finger *finger_, int dutyCycle_)
+{
+    finger_->dutyCycle = dutyCycle_;
+}
+
+void updateVoltage(finger *finger_, float voltage_)
+{
+    finger_->voltageInput = voltage_;
 }
