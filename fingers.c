@@ -140,8 +140,8 @@ bool isActive(finger finger_)
         {
             return true;
         }
-        return false;
     }
+    return false;
 }
 
 float getVoltage(finger finger_)
