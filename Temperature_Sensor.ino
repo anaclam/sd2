@@ -27,7 +27,7 @@ void loop() {
   Serial.println(analogRead(sensor));
   Serial.print(celsiustemp);
   Serial.println(" Celsius");
-  Serial.print(fahrenheittemp);
+  Serial.print(fahrenheittemp);//
   Serial.println(" Fahrenheit");
   delay(300000);
 }
