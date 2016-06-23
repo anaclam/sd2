@@ -33,3 +33,6 @@ Class Fan
     Methods:
 	turnOn
 
+sine needs PWM pin
+output goes to LPF
+
