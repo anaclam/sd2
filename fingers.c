@@ -9,11 +9,12 @@
 
 
 //#include <string.h>
-//----------//
-// typedefs //
-//----------//
+//---------------------//
+// typedefs and CONSTs //
+//---------------------//
 typedef struct finger_s finger;
 typedef enum {SINE=0, SQUARE=1, TRIANGLE=2, PULSE=3} waveform_e;
+const int WF_PERIOD = 1000; // can change this as needed.... IN MILLISECONDS
 
 //-----------------//
 // struct finger_s //
@@ -33,6 +34,7 @@ struct finger_s
 void printFingerInfo(finger finger_);
 char * whichFinger(finger finger_);
 char * whichWaveform(finger finger_);
+int whichPin(finger finger_); //////////////need to define this
 void printActivated(finger finger_);
 char * whichDirection(int i);
 bool isActive(finger finger_);
@@ -44,6 +46,7 @@ void updateWaveform(finger *finger_, int waveform_);
 void updateDutyCycle(finger *finger_, int dutyCycle_);
 void updateVoltage(finger *finger_, float voltage_);
 
+void setDutyCycle(finger finger_, int dutyCycle_, int WF_PERIOD);
 
 //---------------------//
 // funtion definitions //
@@ -99,6 +102,13 @@ char * whichWaveform(finger finger_)
         default:
             return "-----";
     }
+}
+
+int whichPin(finger finger_)
+{
+    //////// define this
+    
+    return 0;
 }
 
 void printActivated(finger finger_)
@@ -176,4 +186,18 @@ void updateDutyCycle(finger *finger_, int dutyCycle_)
 void updateVoltage(finger *finger_, float voltage_)
 {
     finger_->voltageInput = voltage_;
+}
+
+void setDutyCycle(finger finger_, int dutyCycle_, int WF_PERIOD)
+{
+    // need to map finger to pin, then
+    //// this will write to the arduino..... will call this from the arduino loop
+    
+    int timeOn = WF_PERIOD_ / dutyCycle_;
+    int timeOFF = WF_PERIOD - timeOn;
+    
+    int pin = whichPin(finger_);
+    
+    //// write to pin high /low with delay here
+    
 }
