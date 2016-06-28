@@ -1,28 +1,105 @@
-#include <stdio.h>
+//#include <stdio.h>
 
-typedef enum {=0, SQUARE=1, TRIANGLE=2, PULSE=3} waveform_e;
+//---------------------//
+// typedefs and consts //
+//---------------------//
+typedef struct fan_s fan;
+const int tempThreshold = 40;
 
-struct fan
+//--------------//
+// struct fan_s //
+//--------------//
+struct fan_s
 {
-	
-	int tempPin;   
-	int fan;       
-	int led;       
-	int temp;
-	int tempMin;   
-	int tempMax;   
-	int fanSpeed; //what is the range for this variable
-	int fanLCD;
-}; 
+    int fanId;
+//	int sensorPin;
+	int fanPin;
+//	int temp;
+	bool fanSpeed;
+}; //no default case
 
-	struct fan fan_run;
-	
+//-----------------------//
+// function declarations //
+//-----------------------//
+void printFanInfo(fan fan_);
+int getTemp(int fanId_);
+bool getFanSpeed(fan fan_);
+void setFanSpeed(fan fan_);
+
+//----------------------//
+// function definitions //
+//----------------------//
+void printFanInfo(fan fan_)
+{
+    printf("\n");
+    printf("Fan ID: %d \n", fan_.fanId);
+    printf("Temp: %d \n", getTemp(fan_));
+    printf("Fan Speed: %d \n", fan_.fanSpeed);
+    
+    printf("\n");
+}
+
+int getTemp(int fanId_)
+{
+    /* COMMENTED FOR TESTING ONLY
+    //get temperature from tempsensor with same ID
+    int temperature;
+    int tempSensorPin;
+    //select correct pin for fan
+    // This is ugly but whatever
+    if (fanId_==1) tempSensorPin = 5;
+    else if (fanId_==2) tempSensorPin = 4;
+    else if (fanId_==3) tempSensorPin = 3;
+    else if (fanId_==4) tempSensorPin = 2;
+    else printf("\n\n Error: Invalid fanID \n\n");
+
+    temperature = analogRead(tempSensorPin);
+    */
+    
+    /*TESTING*/
+    int temperature = 30;
+    
+    return temperature;
+    
+}
+
+bool getFanSpeed(fan fan_)
+{
+    return fan_.fanSpeed;
+}
+
+void setFanSpeed(fan fan_)
+{
+    int sensorTemp = getTemp(fan_.id);
+    if (sensorTemp < tempThreshold)
+    {
+        fan_.fanSpeed = false;
+        digitalWrite(fan_.fanPin, LOW);
+    }
+    else
+    {
+        fan_.fanSpeed = true;
+        digitalWrite(fan_.fanPin, HIGH);
+    }
+    
+    
+}
+
+
+
+//-------------//
+// for arduino //
+//-------------//
+
+//	struct fan fan_run;
+
+/*
 	fan_run.tempPin = A1;		// the output pin of LM35
 	fan_run.fan = 11;   		// the pin where fan is
-	fan_run.led = 8;			// led pin
-	fan_run.tempMin = 30;		// the temperature to start the fan
-	fan_run.tempMax = 70;		// the maximum temperature when fan is at 100%
-	
+*/
+//    const int tempMin = 30;		// the temperature to start the fan
+//	const int tempMax = 70;		// the maximum temperature when fan is at 100%
+
 	
 	
 /*	void setup() {
@@ -66,7 +143,6 @@ struct fan
     printf("\n");
 	//lcd.setCursor(0,1);   // move cursor to next line
     printf("FANS: ");
-    printf(fan_run.fanLCD);    // display the fan speed
     printf("%");
     delay(200);
     //lcd.clear();
