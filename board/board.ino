@@ -1,5 +1,6 @@
 #include "fan.h"
 #include "finger.h"
+#include "waveform.h"
 #include <stdio.h>
 //#include <iostream>
 

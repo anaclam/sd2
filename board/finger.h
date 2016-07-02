@@ -22,7 +22,7 @@ enum Binary {b0000, b0001, b0010, b0011,
                    b1000, b1001, b1010, b1011,
                    b1100, b1101, b1110, b1111};
 
-enum Waveform {SINE, SQUARE, TRIANGLE, PULSE};
+enum WaveformType {SINE, SQUARE, TRIANGLE, PULSE};
 
 class Finger
 {
