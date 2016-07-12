@@ -17,6 +17,9 @@ enum DIRECTION {UP=1, DOWN=2, LEFT=3, RIGHT=4};
 class SMA
 {
 private:
+    const static int _fingers[]; // holds ints for finger pins
+    const static int _directions[]; // holds ints for direction pins
+    
     int _finger;
     int _direction;
     
@@ -24,6 +27,10 @@ public:
     SMA(int finger_, int dir_);
     int getFinger();
     int getDirection();
+    void turnOn();
+    void turnOn(int delay_);
+    void turnOff();
+    void turnOff(int delay_);
 }
 
 

@@ -1,8 +1,7 @@
 #include "Arduino.h"
 #include "waveform.h"
 
-const int Waveform::_fingers[] = {7, 8, 11, 12, 13};
-const int Waveform::_directions[] = {5, 6, 9, 10};
+
 const int Waveform::_period = 1000;
 
 Waveform::Waveform()

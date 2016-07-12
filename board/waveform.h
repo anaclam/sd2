@@ -16,8 +16,6 @@ enum WaveformType {SINE, SQUARE, TRIANGLE, PULSE};
 class Waveform
 {
 private:
-    const static int _fingers[]; // holds ints for finger pins
-    const static int _directions[]; // holds ints for direction pins
     const static int _period; 
     int _waveform;     // remember WaveformType enum SINE, SQUARE, TRIANGLE, PULSE
     int _dutyCycle;    // value should be between 0 and 255 (0= always off, 255 always on)
