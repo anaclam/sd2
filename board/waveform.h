@@ -16,14 +16,21 @@ enum WaveformType {SINE, SQUARE, TRIANGLE, PULSE};
 class Waveform
 {
 private:
+    const static int _fingers[]; // holds ints for finger pins
+    const static int _directions[]; // holds ints for direction pins
+    const static int _period; 
     int _waveform;     // remember WaveformType enum SINE, SQUARE, TRIANGLE, PULSE
     int _dutyCycle;    // value should be between 0 and 255 (0= always off, 255 always on)
     bool _inputMarker; // true=voltage, false=current
     float _value;      // user provided voltage or current
     bool _onOff;       // true=ON, false=OFF
+    
 public:
+    Waveform();
     Waveform(int wf_, int dC_, bool marker_, float val_, bool onOff_);
     // may need more constructors?
+    
+    void pulse(int dC_, SMA sma_);
     
     bool isOn();
     void turnOff();

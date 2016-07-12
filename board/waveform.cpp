@@ -1,6 +1,16 @@
 #include "Arduino.h"
 #include "waveform.h"
 
+const int Waveform::_fingers[] = {7, 8, 11, 12, 13};
+const int Waveform::_directions[] = {5, 6, 9, 10};
+const int Waveform::_period = 1000;
+
+Waveform::Waveform()
+{
+
+}
+
+
 Waveform::Waveform(int wf_, int dC_, bool marker_, float val_, bool onOff_)
 {
     _waveform = wf_;
@@ -9,6 +19,15 @@ Waveform::Waveform(int wf_, int dC_, bool marker_, float val_, bool onOff_)
     _value = val_;
     _onOff = onOff_;
 }
+
+void pulse(int dC_, SMA sma_)
+{
+    if(dC_ >= 1 && dC_<=99)
+    {
+        //if 50 *1000
+    }
+}
+
 
 bool Waveform::isOn()
 {
