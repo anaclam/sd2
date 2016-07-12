@@ -7,3 +7,19 @@
 //
 
 #include "SMA.h"
+
+SMA(int finger_, int dir_)
+{
+    _finger = finger_;
+    _direction = dir_;
+}
+
+int getFinger()
+{
+    return _finger;
+}
+
+int getDirection()
+{
+    return _direction;
+}
