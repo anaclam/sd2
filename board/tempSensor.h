@@ -16,10 +16,10 @@ class TempSensor
 {
 private:
     int _pin;
-    int _tempC;
+    float _tempC;
 public:
     TempSensor(int pin_);
-    int getTemp();
+    float getTemp();
 };
 
 

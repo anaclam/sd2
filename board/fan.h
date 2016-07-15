@@ -16,15 +16,12 @@
 class Fan
 {
 private:
-    int _fanID;
-    int _fanSpeed;
+    int _pin;
+    void on();
+    void off();
 public:
-    //void init(int, int);
-    Fan(int id_, int speed_);
-    int getFanPin();
-    int getFanSpeed();
-    void setFanSpeed(int);
-    void activate();
+    Fan(int pin_);
+    void setFanSpeed(int tempC_);
 };
 
 #endif /* fan_h */

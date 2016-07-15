@@ -1,6 +1,6 @@
 #include "fan.h"
 #include "finger.h"
-//#include "waveform.h"
+#include "tempSensor.h"
 #include "test.h"
 #include <stdio.h>
 //#include <iostream>
@@ -59,6 +59,22 @@ void loop()
    Test tester;
    tester.off();
    tester.useFan(2);
+   
+   TempSensor ts1(tempSensor1);
+   TempSensor ts2(tempSensor2);
+   TempSensor ts3(tempSensor3);
+   TempSensor ts4(tempSensor4);
+   
+   Fan f1(fan1);
+   Fan f2(fan2);
+   Fan f3(fan3);
+   Fan f4(fan4);
+   
+   f1.setFanSpeed(ts1.getTemp());
+   f2.setFanSpeed(ts2.getTemp());
+   f3.setFanSpeed(ts3.getTemp());
+   f4.setFanSpeed(ts4.getTemp());
+   
    //tester.on();
  //   return 0;
   /*

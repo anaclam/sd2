@@ -13,7 +13,7 @@ TempSensor::TempSensor(int pin_)
     _pin = pin_;
 }
 
-TempSensor::getTemp()
+float TempSensor::getTemp()
 {
     int reading = analogRead(_pin);
     
@@ -21,5 +21,5 @@ TempSensor::getTemp()
     // subtract .5v offset
     // * 100 converts to 10mV per degree C
     _tempC = ((reading * 5.0) - .5) * 100;
-    
+    return _tempC;
 }
