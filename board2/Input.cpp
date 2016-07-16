@@ -14,7 +14,8 @@ Input::Input(String userInput)
 
 Input::parse(String userInput)
 {
-    //
+    int comma = userInput.indexOf(',');
+    int nextComma = userInput.indexOf(',', comma+1);
 }
 
 Input::String getSMAs()
