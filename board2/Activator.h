@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <Arduino.h>
-
+#include "Input.h"
 // ENUM for pins
 class Activator
 {
@@ -19,14 +19,14 @@ private:
     //int directionPins[];
     //int fingerPins[];
 
-    String SMAS[];
+    String SMAS;
     
-    SMATranslator();
-    switching();
+    void SMATranslator();
+    void switching();
 public:
     Activator(String smas);
 
-    activate(); // for each in array, calls sma translator and activates that sma
+    void activate(); // for each in array, calls sma translator and activates that sma
 };
 
 #endif /* Activator_h */

@@ -15,14 +15,15 @@
 class Input
 {
 private:
-    String SMAS[];
+    String SMAS;
     bool pulse;
     int dutyCycle;
     int delay;
     
-    parse(String userInput);
+    void parse(String userInput);
     
 public:
+    Input();
     Input(String userInput);
     String getSMAs();
     bool isPulse();

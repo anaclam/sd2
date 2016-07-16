@@ -12,28 +12,47 @@ Input::Input(String userInput)
     parse(userInput);
 }
 
-Input::parse(String userInput)
+Input::Input()
 {
-    int comma = userInput.indexOf(',');
-    int nextComma = userInput.indexOf(',', comma+1);
+  //
 }
 
-Input::String getSMAs()
+void Input::parse(String userInput)
+{
+    int commaSMAs = userInput.indexOf(',');
+    int commaPulse = userInput.indexOf(',', commaSMAs+1);
+    int commadC = userInput.indexOf(',', commaPulse+1);
+    
+    String smas_s = userInput.substring(0, commaSMAs);
+    String pulse_s = userInput.substring(commaSMAs+1, commaPulse);
+    String dutyCycle_s = userInput.substring(commaPulse+1, commadC);
+    String delay_s = userInput.substring(commadC);
+    
+    SMAS = smas_s;
+    
+    if (pulse_s.toInt() == 0) pulse=false;
+    else pulse=true;
+    
+    dutyCycle = dutyCycle_s.toInt();
+    delay = delay_s.toInt();
+}
+
+String Input::getSMAs()
 {
     return SMAS;
 }
 
-Input::bool isPulse()
+bool Input::isPulse()
 {
     return pulse;
 }
 
-Input::int getDutyCycle()
+int Input::getDutyCycle()
 {
     return dutyCycle;
 }
 
-Input::int getDelay()
+int Input::getDelay()
 {
     return delay;
 }

@@ -13,17 +13,17 @@ Activator::Activator(String smas)
     SMAS = smas;
 }
 
-Activator::SMATranslator()
+void Activator::SMATranslator()
 {
     // parse string
 }
 
-Activator::activate()
+void Activator::activate()
 {
     // for each in array, calls sma translator and activates that sma
 }
 
-Activator::switching()
+void Activator::switching()
 {
     
 }

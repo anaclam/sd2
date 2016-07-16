@@ -11,14 +11,16 @@
 
 #include <stdio.h>
 #include <Arduino.h>
+#include "Input.h"
 
 class InputHandler
 {
 private:
-    Input input;
+  Input input;
 public:
-    InputHandler(Input input_);
-    void compute();
+  InputHandler(Input input_);
+  void compute();
 };
 
 #endif /* InputHandler_h */
+
