@@ -6,4 +6,15 @@
 //
 //
 
-#include "Input.hpp"
+#include "Input.h"
+
+
+Input::Input(String input_)
+{
+    _input = input_;
+}
+
+Input::getInput()
+{
+    return _input;
+}
