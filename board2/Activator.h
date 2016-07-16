@@ -22,6 +22,7 @@ private:
     String SMAS[];
     
     SMATranslator();
+    switching();
 public:
     Activator(String smas);
 
