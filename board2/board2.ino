@@ -1,6 +1,7 @@
 #include "fan.h"
 #include "tempSensor.h"
 #include "Input.h"
+#include "InputHandler.h"
 #include <stdio.h>
 //#include <iostream>
 
@@ -78,4 +79,7 @@ void loop()
    // make input handler 
    String testString = "TUIDPR,1,50,100";
    Input input(testString);
+   
+   InputHandler inputHandler(input);
+   
 }

@@ -7,6 +7,8 @@
 //
 
 #include "InputHandler.h"
+#include "Activator.h"
+#include <Arduino.h>
 
 InputHandler::InputHandler(Input input_)
 {
@@ -16,4 +18,7 @@ InputHandler::InputHandler(Input input_)
 void InputHandler::compute()
 {
     // start calling stuff
+    Activator activator(input.getSMAS());
+    
+    
 }

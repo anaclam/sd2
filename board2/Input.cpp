@@ -37,7 +37,7 @@ void Input::parse(String userInput)
     delay = delay_s.toInt();
 }
 
-String Input::getSMAs()
+String Input::getSMAS()
 {
     return SMAS;
 }

@@ -25,7 +25,7 @@ private:
 public:
     Input();
     Input(String userInput);
-    String getSMAs();
+    String getSMAS();
     bool isPulse();
     int getDutyCycle();
     int getDelay();
