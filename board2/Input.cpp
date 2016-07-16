@@ -7,3 +7,32 @@
 //
 
 #include "Input.h"
+Input::Input(String userInput)
+{
+    parse(userInput);
+}
+
+Input::parse(String userInput)
+{
+    //
+}
+
+Input::String getSMAs()
+{
+    return SMAS;
+}
+
+Input::bool isPulse()
+{
+    return pulse;
+}
+
+Input::int getDutyCycle()
+{
+    return dutyCycle;
+}
+
+Input::int getDelay()
+{
+    return delay;
+}

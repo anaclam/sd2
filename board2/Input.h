@@ -10,5 +10,24 @@
 #define Input_h
 
 #include <stdio.h>
+#include <Arduino.h>
+
+class Input
+{
+private:
+    String SMAS[];
+    bool pulse;
+    int dutyCycle;
+    int delay;
+    
+    parse(String userInput);
+    
+public:
+    Input(String userInput);
+    String getSMAs();
+    bool isPulse();
+    int getDutyCycle();
+    int getDelay();
+};
 
 #endif /* Input_h */

@@ -57,6 +57,7 @@ void setup()
 
 void loop()
 {
+   // Temperature stuff
    TempSensor ts1(tempSensor1);
    TempSensor ts2(tempSensor2);
    TempSensor ts3(tempSensor3);
@@ -71,5 +72,9 @@ void loop()
    f2.setFanSpeed(ts2.getTemp());
    f3.setFanSpeed(ts3.getTemp());
    f4.setFanSpeed(ts4.getTemp());
+
+   // SMA stuff
+   // read from serial input then make input object
+   // make input handler 
 
 }

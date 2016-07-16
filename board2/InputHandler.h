@@ -10,5 +10,15 @@
 #define InputHandler_h
 
 #include <stdio.h>
+#include <Arduino.h>
+
+class InputHandler
+{
+private:
+    Input input;
+public:
+    InputHandler(Input input_);
+    void compute();
+};
 
 #endif /* InputHandler_h */

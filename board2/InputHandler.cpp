@@ -7,3 +7,13 @@
 //
 
 #include "InputHandler.h"
+
+InputHandler::InputHandler(Input input_)
+{
+    input = input_;
+}
+
+void InputHandler::compute()
+{
+    // start calling stuff
+}
