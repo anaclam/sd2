@@ -8,9 +8,11 @@
 //------------------//
 // Pin designations //
 //------------------//
-int fan1 = 0;
-int fan2 = 1;
-int fan3 = 2;
+// Need RX and TX (DP 0, 1) for serial port communication
+
+int fan1 = 15; // Analog pin 1
+int fan2 = 2;
+int fan3 = 3;
 int fan4 = 4;
 
 int tempSensor1 = 19;
@@ -56,10 +58,6 @@ void setup()
 
 void loop()
 {
-   Test tester;
-   tester.off();
-   tester.useFan(2);
-   
    TempSensor ts1(tempSensor1);
    TempSensor ts2(tempSensor2);
    TempSensor ts3(tempSensor3);
