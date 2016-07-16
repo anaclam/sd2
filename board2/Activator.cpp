@@ -18,7 +18,12 @@ Activator::SMATranslator()
     // parse string
 }
 
-activate()
+Activator::activate()
 {
     // for each in array, calls sma translator and activates that sma
+}
+
+Activator::switching()
+{
+    
 }
