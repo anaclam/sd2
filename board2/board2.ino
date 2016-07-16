@@ -1,6 +1,6 @@
 #include "fan.h"
 #include "tempSensor.h"
-
+#include "Input.h"
 #include <stdio.h>
 //#include <iostream>
 
@@ -76,5 +76,6 @@ void loop()
    // SMA stuff
    // read from serial input then make input object
    // make input handler 
-
+   String testString = "TUIDPR,1,50,100";
+   Input input(testString);
 }
