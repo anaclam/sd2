@@ -1,7 +1,10 @@
 #include "fan.h"
 #include "tempSensor.h"
+
 #include "Input.h"
 #include "InputHandler.h"
+#include "Activator.h"
+
 #include <stdio.h>
 //#include <iostream>
 
@@ -54,10 +57,37 @@ void setup()
   pinMode (tempSensor2, INPUT);
   pinMode (tempSensor3, INPUT);
   pinMode (tempSensor4, INPUT);
+  
+  Serial.begin(9600);
 }
 
 void loop()
 {
+   // Serial read input 
+   String userInput;
+   byte byteRead;
+
+   if (Serial.available())
+  {
+      byteRead=Serial.read();
+      if(byteRead>47 && byteRead< 50)
+      {
+         userInput = userInput+ (byteRead-48);
+      } 
+      else if(byteRead== 32)
+      {
+        userInput+=" ";  
+      }
+      else if(byteRead==53)
+      {
+        userInput.trim();
+        Serial.println(userInput);
+        Serial.println(userInput[0]);
+        userInput="";
+  
+      }
+  }
+   
    // Temperature stuff
    TempSensor ts1(tempSensor1);
    TempSensor ts2(tempSensor2);
@@ -77,9 +107,10 @@ void loop()
    // SMA stuff
    // read from serial input then make input object
    // make input handler 
-   String testString = "TUIDPR,1,50,100";
-   Input input(testString);
+   //String testString = "0000 0001 1100 0110 0000, 4000";
+   Input input(userInput);
    
    InputHandler inputHandler(input);
+   inputHandler.compute();
    
 }

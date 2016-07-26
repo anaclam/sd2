@@ -7,34 +7,26 @@
 //
 
 #include "Input.h"
-Input::Input(String userInput)
-{
-    parse(userInput);
-}
-
 Input::Input()
 {
   //
 }
 
+Input::Input(String userInput)
+{
+    parse(userInput);
+    //shutoffActivated = false;
+}
+
 void Input::parse(String userInput)
 {
-    int commaSMAs = userInput.indexOf(',');
-    int commaPulse = userInput.indexOf(',', commaSMAs+1);
-    int commadC = userInput.indexOf(',', commaPulse+1);
+    int comma = userInput.indexOf(',');
     
-    String smas_s = userInput.substring(0, commaSMAs);
-    String pulse_s = userInput.substring(commaSMAs+1, commaPulse);
-    String dutyCycle_s = userInput.substring(commaPulse+1, commadC);
-    String delay_s = userInput.substring(commadC);
+    String smas_s = userInput.substring(0, comma);
+    String shutoff_s = userInput.substring(comma);
     
     SMAS = smas_s;
-    
-    if (pulse_s.toInt() == 0) pulse=false;
-    else pulse=true;
-    
-    dutyCycle = dutyCycle_s.toInt();
-    delay = delay_s.toInt();
+    timeUntilAutoShutoff = shutoff_s.toInt();
 }
 
 String Input::getSMAS()
@@ -42,17 +34,7 @@ String Input::getSMAS()
     return SMAS;
 }
 
-bool Input::isPulse()
+int Input::getTimeUntilAutoShutoff()
 {
-    return pulse;
-}
-
-int Input::getDutyCycle()
-{
-    return dutyCycle;
-}
-
-int Input::getDelay()
-{
-    return delay;
+    return timeUntilAutoShutoff;
 }
