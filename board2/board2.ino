@@ -37,6 +37,12 @@ int pinky = 13;
 //int fingers[5] = {7, 8, 11, 12, 13};
 //int directions[4] = {5, 6, 9, 10};
 
+const int directionPin[4] = {5, 6, 9, 10}; // UDLR
+const int fingerPin[5] = {7, 8, 11, 12, 13}; //TIMRP
+
+String userInput;
+byte byteRead;
+   
 void setup()
 {
   pinMode (fan1, OUTPUT);
@@ -59,15 +65,14 @@ void setup()
   pinMode (tempSensor4, INPUT);
   
   Serial.begin(9600);
+  
 }
 
 void loop()
 {
+  /*
    // Serial read input 
-   String userInput;
-   byte byteRead;
-
-   if (Serial.available())
+   while (Serial.available())
   {
       byteRead=Serial.read();
       if(byteRead>47 && byteRead< 50)
@@ -82,11 +87,18 @@ void loop()
       {
         userInput.trim();
         Serial.println(userInput);
-        Serial.println(userInput[0]);
-        userInput="";
-  
+
+        Input input(userInput);
+        InputHandler inputHandler(input);
+        inputHandler.compute();
       }
-  }
+      else if(byteRead==57)
+      {
+        userInput="";
+      }
+  } 
+  */
+
    
    // Temperature stuff
    TempSensor ts1(tempSensor1);
@@ -104,13 +116,10 @@ void loop()
    f3.setFanSpeed(ts3.getTemp());
    f4.setFanSpeed(ts4.getTemp());
 
-   // SMA stuff
-   // read from serial input then make input object
-   // make input handler 
-   //String testString = "0000 0001 1100 0110 0000, 4000";
-   Input input(userInput);
-   
+   /*
+   String testString = "1001 1001 1001 1001 1001";
+   Input input(testString);
    InputHandler inputHandler(input);
    inputHandler.compute();
-   
+   */
 }

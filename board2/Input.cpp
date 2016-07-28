@@ -20,13 +20,14 @@ Input::Input(String userInput)
 
 void Input::parse(String userInput)
 {
-    int comma = userInput.indexOf(',');
+    SMAS = userInput;
+    //int comma = userInput.indexOf(',');
     
-    String smas_s = userInput.substring(0, comma);
-    String shutoff_s = userInput.substring(comma);
+    //String smas_s = userInput.substring(0, comma);
+    //String shutoff_s = userInput.substring(comma);
     
-    SMAS = smas_s;
-    timeUntilAutoShutoff = shutoff_s.toInt();
+    //SMAS = smas_s;
+    //timeUntilAutoShutoff = shutoff_s.toInt();
 }
 
 String Input::getSMAS()
@@ -34,7 +35,7 @@ String Input::getSMAS()
     return SMAS;
 }
 
-int Input::getTimeUntilAutoShutoff()
-{
-    return timeUntilAutoShutoff;
-}
+//int Input::getTimeUntilAutoShutoff()
+//{
+  //  return timeUntilAutoShutoff;
+//}

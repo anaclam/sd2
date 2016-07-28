@@ -23,6 +23,9 @@ InputHandler::InputHandler(Input input_)
 void InputHandler::compute()
 {
     // start calling stuff
+    
+    
+    
     Activator activator(input.getSMAS());
     
     activator.activate();

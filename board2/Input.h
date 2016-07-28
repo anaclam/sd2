@@ -16,7 +16,7 @@ class Input
 {
 private:
     String SMAS;
-    int timeUntilAutoShutoff;
+    //int timeUntilAutoShutoff;
     ///bool shutoffActivated; // default is false. If the shutoff is activated,
                            // will not activate anything until a new string from input is read,
                            // to prevent arduino loop from activating unintentaionlly

@@ -26,7 +26,7 @@ int Activator::countSMAsOn()
 
 int Activator::switching()
 {
-    int timeToCompleteSwitching = 2000; //// this is const from config file ///GOTTA READ IN
+    int timeToCompleteSwitching = 5000; //// this is const from config file ///GOTTA READ IN
     int numSmasOn = countSMAsOn();
     
     int timeForEachSMA = numSmasOn / timeToCompleteSwitching;
@@ -55,22 +55,26 @@ void Activator::activatePins(int finger, String fingerString, int delayTime)
     
     for (int i=0; i<4 ; i++)
     {
-        if (fingerString.charAt(i) == '0')
+        if (fingerString.charAt(i) == '1')
         {
-            digitalWrite(directionPins[i], HIGH);
-            digitalWrite(finger, LOW);
+            digitalWrite(directionPins[i], HIGH); //LOW
+            digitalWrite(finger, LOW); //HIGH
+            delay(delayTime-1);
+            allSmasOff(); 
+            delay(1);
+            //delay(100); //To demo switching
         }
         else
         {
-            digitalWrite(directionPins[i], LOW);
-            digitalWrite(finger, HIGH);
-            delay(delayTime);
+            digitalWrite(directionPins[i], LOW); //HIGH
+            digitalWrite(finger, HIGH); //LOW
         }
     }
 }
 
 int Activator::getActivatedPins(int delayTime)
 {
+  
     // split sma info
     int spaceT = SMAS.indexOf(' ');
     int spaceI = SMAS.indexOf(' ', spaceT+1);
@@ -81,7 +85,16 @@ int Activator::getActivatedPins(int delayTime)
     String index = SMAS.substring(spaceT+1, spaceI);
     String middle= SMAS.substring(spaceI+1, spaceM);
     String ring  = SMAS.substring(spaceM+1, spaceR);
-    String pinky = SMAS.substring(spaceR);
+    String pinky = SMAS.substring(spaceR+1);
+    
+    
+ /*   String thumb = SMAS.substring(0, 4);
+    String index = SMAS.substring(4, 8);
+    String middle= SMAS.substring(8, 12);
+    String ring  = SMAS.substring(12, 16);
+    String pinky = SMAS.substring(17);*/
+    
+    allSmasOff();
     
     activatePins(THUMB, thumb, delayTime);
     activatePins(INDEX, index, delayTime);
@@ -99,8 +112,8 @@ void Activator::allSmasOff()
     {
         for (int j=0; j<5; j++)
         {
-            digitalWrite(directionPins[i], HIGH);
-            digitalWrite(fingerPins[j], LOW);
+            digitalWrite(directionPins[i], LOW); // HIGH
+            digitalWrite(fingerPins[j], HIGH); //LOW
         }
     }
 }
