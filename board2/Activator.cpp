@@ -26,15 +26,12 @@ int Activator::countSMAsOn()
 
 int Activator::switching()
 {
-    int timeToCompleteSwitching = 5000; //// this is const from config file ///GOTTA READ IN
+    int timeToCompleteSwitching = 5000; ///// SET BY USER BEFORE COMPILING
     int numSmasOn = countSMAsOn();
     
     int timeForEachSMA = numSmasOn / timeToCompleteSwitching;
     
     return timeForEachSMA;
-    //check booleans.
-  ///  allSmasOff();
-    // don't forget to set booealns
 }
 
 void Activator::activate()
@@ -59,9 +56,8 @@ void Activator::activatePins(int finger, String fingerString, int delayTime)
         {
             digitalWrite(directionPins[i], HIGH); //LOW
             digitalWrite(finger, LOW); //HIGH
-            delay(delayTime-1);
+            delay(delayTime);
             allSmasOff(); 
-            delay(1);
             //delay(100); //To demo switching
         }
         else
@@ -87,13 +83,6 @@ int Activator::getActivatedPins(int delayTime)
     String ring  = SMAS.substring(spaceM+1, spaceR);
     String pinky = SMAS.substring(spaceR+1);
     
-    
- /*   String thumb = SMAS.substring(0, 4);
-    String index = SMAS.substring(4, 8);
-    String middle= SMAS.substring(8, 12);
-    String ring  = SMAS.substring(12, 16);
-    String pinky = SMAS.substring(17);*/
-    
     allSmasOff();
     
     activatePins(THUMB, thumb, delayTime);
@@ -101,9 +90,6 @@ int Activator::getActivatedPins(int delayTime)
     activatePins(MIDDLE, middle, delayTime);
     activatePins(RING, ring, delayTime);
     activatePins(PINKY, pinky, delayTime);
-    /*
-    delay(delay); //// need switching
-    allSmasOff(); */
 }
 
 void Activator::allSmasOff()

@@ -6,12 +6,12 @@
 #include "Activator.h"
 
 #include <stdio.h>
-//#include <iostream>
 
 //------------------//
 // Pin designations //
 //------------------//
 // Need RX and TX (DP 0, 1) for serial port communication
+// USAGE: User sets constant in Activator.cpp switching method
 
 int fan1 = 15; // Analog pin 1
 int fan2 = 2;
@@ -34,13 +34,13 @@ int middle = 11;
 int ring = 12;
 int pinky = 13;
 
-//int fingers[5] = {7, 8, 11, 12, 13};
-//int directions[4] = {5, 6, 9, 10};
-
 const int directionPin[4] = {5, 6, 9, 10}; // UDLR
 const int fingerPin[5] = {7, 8, 11, 12, 13}; //TIMRP
 
 String userInput;
+String prevInput;
+String globalUserInput;
+
 byte byteRead;
    
 void setup()
@@ -70,10 +70,11 @@ void setup()
 
 void loop()
 {
-  /*
-   // Serial read input 
-   while (Serial.available())
-  {
+
+    // Serial read input 
+    while (Serial.available())
+    {
+
       byteRead=Serial.read();
       if(byteRead>47 && byteRead< 50)
       {
@@ -86,19 +87,31 @@ void loop()
       else if(byteRead==53)
       {
         userInput.trim();
+        
+        Serial.println("\nuserInput: ");
         Serial.println(userInput);
-
-        Input input(userInput);
-        InputHandler inputHandler(input);
-        inputHandler.compute();
+        Serial.println("\nprevInput: ");
+        Serial.println(prevInput);
+        
+        if (prevInput != userInput)
+        {
+          globalUserInput = userInput;
+          Serial.println("Different!");
+          prevInput = userInput;
+          userInput="";
+        }
+        else 
+        {
+          Serial.println("Same");
+          userInput="";
+        }
       }
-      else if(byteRead==57)
-      {
-        userInput="";
-      }
-  } 
-  */
-
+   } 
+  
+   //Serial.println(globalUserInput);
+   Input input(globalUserInput);
+   InputHandler inputHandler(input);
+   inputHandler.compute();
    
    // Temperature stuff
    TempSensor ts1(tempSensor1);
@@ -116,10 +129,4 @@ void loop()
    f3.setFanSpeed(ts3.getTemp());
    f4.setFanSpeed(ts4.getTemp());
 
-   /*
-   String testString = "1001 1001 1001 1001 1001";
-   Input input(testString);
-   InputHandler inputHandler(input);
-   inputHandler.compute();
-   */
 }

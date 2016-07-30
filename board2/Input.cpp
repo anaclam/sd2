@@ -9,25 +9,18 @@
 #include "Input.h"
 Input::Input()
 {
-  //
+  // DO NOT REMOVE
+  // must have default constructor to pass in object for InputHandler
 }
 
 Input::Input(String userInput)
 {
     parse(userInput);
-    //shutoffActivated = false;
 }
 
 void Input::parse(String userInput)
 {
     SMAS = userInput;
-    //int comma = userInput.indexOf(',');
-    
-    //String smas_s = userInput.substring(0, comma);
-    //String shutoff_s = userInput.substring(comma);
-    
-    //SMAS = smas_s;
-    //timeUntilAutoShutoff = shutoff_s.toInt();
 }
 
 String Input::getSMAS()
@@ -35,7 +28,3 @@ String Input::getSMAS()
     return SMAS;
 }
 
-//int Input::getTimeUntilAutoShutoff()
-//{
-  //  return timeUntilAutoShutoff;
-//}
