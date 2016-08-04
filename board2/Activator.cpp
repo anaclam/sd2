@@ -26,6 +26,17 @@ Activator::Activator(String smas)
    
     inverted = set.inverted;
     timeToCompleteSwitching = set.timeToCompleteSwitching;
+    
+    if (inverted)
+    {
+      on = '0';
+      off = '1';
+    }
+    else
+    {
+      on = '1';
+      off = '0';
+    }
 }
 
 int Activator::countSMAsOn() // counts number of SMAS for switching method
@@ -34,7 +45,7 @@ int Activator::countSMAsOn() // counts number of SMAS for switching method
     
     for (int i=0; i<SMAS.length(); i++)
     {
-        if (SMAS[i] == '1') smasOn++;
+        if (SMAS[i] == on) smasOn++;
     }
     return smasOn;
 }
@@ -65,34 +76,35 @@ void Activator::activatePins(int finger, String fingerString, int delayTime)
     
     for (int i=0; i<4 ; i++)
     {
-        if (fingerString.charAt(i) == '1')
+        if (fingerString.charAt(i) == on)
         {
-            if (inverted)
+            /*if (inverted)
             {
               digitalWrite(directionPins[i], LOW); 
               digitalWrite(finger, HIGH);
             }
             else
-            {
+            {*/
               digitalWrite(directionPins[i], HIGH); 
               digitalWrite(finger, LOW); 
-            }
-            delay(delayTime);
+            //}
+            if (!inverted) delay(delayTime);
             allSmasOff(); // This can be removed but works as a safety to ensure no current leakage.
-            //delay(100); // To demo switching
         }
-        else
+        else if (fingerString.charAt(i) == off)
         {
-            if (inverted)
+            /*if (inverted)
             {
               digitalWrite(directionPins[i], HIGH);
               digitalWrite(finger, LOW);
             }
             else
-            {
+            {*/
               digitalWrite(directionPins[i], LOW); // For SMA, would be HIGH
               digitalWrite(finger, HIGH); // For SMA, would be LOW
-            }
+              if (inverted) delay(delayTime);
+            //}
+            allSmasOff();
         }
     }
 }
@@ -112,7 +124,7 @@ int Activator::getActivatedPins(int delayTime) // parses out SMA string and call
     String ring  = SMAS.substring(spaceM+1, spaceR);
     String pinky = SMAS.substring(spaceR+1);
     
-    allSmasOff();
+    //allSmasOff();
     
     activatePins(fingerPins[0], thumb, delayTime);
     activatePins(fingerPins[1], index, delayTime);
@@ -123,9 +135,19 @@ int Activator::getActivatedPins(int delayTime) // parses out SMA string and call
 
 void Activator::allSmasOff() // turns all smas off
 {
-    for (int i=0; i<4; i++)
+   /* if (inverted)
     {
-        for (int j=0; j<5; j++)
+      PORTD=PORTD | B11110000;
+      PORTB=PORTB | B00011111;
+    }
+    else
+    {
+      PORTD=PORTD | B00000000;
+      PORTB=PORTB | B00000000;
+    }*/
+    for (int j=0; j<5; j++)
+    {
+        for (int i=0; i<4; i++)
         {
             if (inverted)
             {

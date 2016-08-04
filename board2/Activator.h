@@ -23,6 +23,8 @@ private:
     int fingerPins[5];
     boolean inverted;
     int timeToCompleteSwitching;
+    char on;
+    char off;
     int getActivatedPins(int delayTime);
     void activatePins(int finger, String fingerString, int delayTime);
     int switching();

@@ -32,7 +32,7 @@ Config::Config()
   tempSensor4 = 16;
   
   inverted = false;
-  timeToCompleteSwitching = 4;
+  timeToCompleteSwitching = 100; 
   tempThreshold = 100; //Fahrenheit
 }
 
