@@ -32,12 +32,8 @@ Config::Config()
   tempSensor4 = 16;
   
   inverted = false;
-  timeToCompleteSwitching = 30;
-  // do not set
- // directionPins = {up, down, left, right};
-  //fingerPins = {thumb, index, middle, ring, pinky};
- // *dptr = directionPins;
- // *fptr = fingerPins;
+  timeToCompleteSwitching = 4;
+  tempThreshold = 100; //Fahrenheit
 }
 
 

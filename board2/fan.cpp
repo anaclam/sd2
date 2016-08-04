@@ -12,10 +12,11 @@
 Fan::Fan(int pin_)
 {
     _pin = pin_;
+    Config set;
+    tempThreshold = set.tempThreshold;
 }
 
 void Fan::setFanSpeed (int tempC_) {
-    int tempThreshold = 100; // not sure what value should be
     if (tempC_ <= tempThreshold)
     {
         off();

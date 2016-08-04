@@ -48,6 +48,7 @@ public:
                       // so we use the inverted flag to use the correct logic without having to change
                       // this everywhere
     int timeToCompleteSwitching;
+    int tempThreshold;
     //int directionPins[4];
     //int fingerPins[5];
     

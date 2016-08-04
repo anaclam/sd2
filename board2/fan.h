@@ -11,6 +11,7 @@
 
 #include "Arduino.h"
 #include <stdio.h>
+#include "config.h"
 //#include <iostream>
 
 class Fan
@@ -19,6 +20,7 @@ private:
     int _pin;
     void on();
     void off();
+    int tempThreshold;
 public:
     Fan(int pin_);
     void setFanSpeed(int tempC_);
